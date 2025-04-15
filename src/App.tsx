@@ -28,6 +28,8 @@ import UnauthorizedPage from "./views/ui/UnauthorizedPage";
 import Layout from "./views/ui/Layout";
 import AddPackageForm from "./views/menu/packages/AddPackageForm";
 import NewPackages from "./views/menu/packages/NewPackages";
+import AddBlogsForm from "./views/menu/blogs/AddBlogsForm";
+import Blogs from "./views/menu/blogs/Blogs";
 
 function App() {
   useEffect(() => {
@@ -131,6 +133,12 @@ function App() {
           <Route path="/packages" element={<NewPackages lang="ar" />} />
           <Route path="/packages/add" element={<AddPackageForm />} />
           <Route path="/packages/add/:id" element={<AddPackageForm />} />
+          {/* Packages Routes */}
+
+          {/* <Route path="/packages" element={<Packages />} /> */}
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/add" element={<AddBlogsForm />} />
+          <Route path="/blogs/add/:id" element={<AddBlogsForm />} />
           {/* Packages Routes */}
 
           <Route path="unauthorized" element={<UnauthorizedPage />} />

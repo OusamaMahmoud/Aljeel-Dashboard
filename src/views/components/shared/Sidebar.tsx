@@ -87,13 +87,13 @@ const Sidebar = ({ isOpen }: { isOpen: (bool: boolean) => void }) => {
             <RiPagesLine />
             <span className="capitalize ">Jobs</span>
           </NavLink>
-          {/* <NavLink
-            to={`/teams`}
+          <NavLink
+            to={`/blogs`}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
             <PiMicrosoftTeamsLogoFill />
-            <span className="capitalize ">{t("sidebar:sidebar.teams")}</span>
-          </NavLink> */}
+            <span className="capitalize ">Blogs</span>
+          </NavLink>
           <NavLink
             to={`/packages`}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
