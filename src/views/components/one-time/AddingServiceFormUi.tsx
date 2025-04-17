@@ -1,5 +1,4 @@
 import ImageInputWithHook from "../shared/ImageInputWithHook";
-import TextAreaWithHook from "../shared/TextAreaWithHook";
 import TextInputWithHook from "../shared/TextInputWithHook";
 
 const AddingServiceFormUi = () => {
@@ -15,7 +14,7 @@ const AddingServiceFormUi = () => {
         name="titleAr"
         placeholder={"Write Your Service Title [AR]..."}
       />
-      <TextAreaWithHook
+      {/* <TextAreaWithHook
         label={"Service Description"}
         name="textEn"
         placeholder={"Write Your Service Description [EN]..."}
@@ -24,7 +23,7 @@ const AddingServiceFormUi = () => {
         label={"Service Description"}
         name="textAr"
         placeholder={"Write Your Service Description [AR]..."}
-      />
+      /> */}
 
       <ImageInputWithHook label={"Service Images"} />
     </section>

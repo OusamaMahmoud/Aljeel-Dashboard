@@ -15,6 +15,7 @@ import {
 } from "../../components/zod-schema/addServiceSchema";
 import AddingServiceFormUi from "../../components/one-time/AddingServiceFormUi";
 import { useFetchService } from "../../hooks/services/useFetchService";
+import TextEditor from "../../components/shared/TextEditor";
 
 const AddServicesForm: React.FC = () => {
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
@@ -82,8 +83,8 @@ const AddServicesForm: React.FC = () => {
     const fields = [
       { key: "title[en]", value: data.titleEn },
       { key: "title[ar]", value: data.titleAr },
-      { key: "text[en]", value: data.textEn },
-      { key: "text[ar]", value: data.textAr },
+      { key: "text[en]", value: descriptionEn },
+      { key: "text[ar]", value: descriptionAr },
     ];
 
     if (serviceId) fields.push({ key: "_method", value: "put" });
@@ -122,7 +123,7 @@ const AddServicesForm: React.FC = () => {
       const ID = params?.id;
       if (ID) {
         setServiceId(ID);
-        console.log("o=>",ID);
+        console.log("o=>", ID);
       }
     }
   }, [params]);
@@ -130,16 +131,18 @@ const AddServicesForm: React.FC = () => {
   useEffect(() => {
     if (serviceId) {
       methods.reset({
-        textAr: serviceData?.text?.ar,
-        textEn: serviceData?.text?.en,
         titleAr: serviceData?.title?.ar,
         titleEn: serviceData?.title?.en,
       });
 
+      if (serviceData) setDescriptionAr(serviceData?.text.ar);
+      if (serviceData) setDescriptionEn(serviceData?.text.en);
+
       if (serviceData?.icon) setOldImagesPreview(serviceData?.icon);
     }
   }, [serviceData, methods.reset]);
-
+  const [descriptionAr, setDescriptionAr] = useState<string>("");
+  const [descriptionEn, setDescriptionEn] = useState<string>("");
   return (
     <FormProvider {...methods}>
       <div className="container mx-auto p-4">
@@ -165,7 +168,18 @@ const AddServicesForm: React.FC = () => {
 
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <AddingServiceFormUi />
-
+          <div className="mt-4">
+            <TextEditor
+              onChange={setDescriptionAr}
+              value={descriptionAr}
+              label="Description(Ar)"
+            />
+            <TextEditor
+              onChange={setDescriptionEn}
+              value={descriptionEn}
+              label="Description(En)"
+            />
+          </div>
           {imagesPreview.length > 0 && (
             <ImagesPreviewUi imagesPreviewUrls={imagesPreview} />
           )}
